@@ -1,6 +1,12 @@
-export RCFILE=$HOME/.profile
+#----------------------------------------------------------
+# DETECT ENVIRONMENT
+#----------------------------------------------------------
 
-# Where are we?
+# The basics.
+: ${HOME=~}
+: ${LOGNAME=$(id -un)}
+: ${UNAME=$(uname)}
+
 
 # detect interactive shell
 case "$-" in
@@ -52,6 +58,39 @@ export SVN_EDITOR=vim
 
 
 #----------------------------------------------------------
+# PROMPT
+#----------------------------------------------------------
+
+# Set a fancy prompt (non-color, unless we know we "want" color)
+#
+case "$TERM" in
+xterm-color)
+  declare -f __git_ps1 > /dev/null
+  if [ $? -eq 0 ]; then
+    PS1='\[\033[01;33m\][\t]\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[1;35m\]$(__git_ps1 "%s")\[\033[00m\]\n\$ '
+  else
+    PS1='\[\033[01;33m\][\t]\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ '
+  fi
+  ;;
+*)
+  PS1='\u@\h:\w\n\$ '
+  ;;
+esac
+
+
+#----------------------------------------------------------
+# LS
+#----------------------------------------------------------
+
+if [ "$UNAME" = Darwin ]; then
+  LS_COMMON="-hBG"
+else
+  LS_COMMON="-h --color --group-directories-first"
+fi
+export LS_COMMON
+
+
+#----------------------------------------------------------
 # MISC ENVIRONMENT CONFIGURATION
 #----------------------------------------------------------
 
@@ -92,32 +131,15 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Load personal command aliases
-[[ -s "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
 # Load personal shell functions
 [[ -s "$HOME/.functions" ]] && source "$HOME/.functions"
 
 
 #----------------------------------------------------------
-# PROMPT
+# LOGIN MESSAGE
 #----------------------------------------------------------
-
-# Set a fancy prompt (non-color, unless we know we "want" color)
-#
-case "$TERM" in
-xterm-color)
-  declare -f __git_ps1 > /dev/null
-  if [ $? -eq 0 ]; then
-    PS1='\[\033[01;33m\][\t]\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[1;35m\]$(__git_ps1 "%s")\[\033[00m\]\n\$ '
-  else
-    PS1='\[\033[01;33m\][\t]\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ '
-  fi
-  ;;
-*)
-  PS1='\u@\h:\w\n\$ '
-  ;;
-esac
-
 
 # Say hello!
 test -n "$INTERACTIVE" -a -n "$LOGIN" && {

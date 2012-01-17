@@ -46,7 +46,9 @@ endif
 " ----------------------------------------------------------------------------
 
 " Load pathogen early, before we start configuring plugins.
-call pathogen#infect()
+if !empty(globpath(&rtp, 'autoload/pathogen.vim'))
+  call pathogen#infect()
+endif
 
 
 " ----------------------------------------------------------------------------
@@ -188,12 +190,11 @@ match RedundantSpaces /\s\+$/
 let g:winManagerWidth = 42
 
 " Leader-w -- toggle WinManager on or off.
-nmap <leader>w :WMToggle<CR>
+nmap <C-w><C-t> :WMToggle<CR>
 
 " Jump through windows with F5, Shift-w or ww.
 nmap <F5> <C-w><C-w>
-nmap W <C-w><C-w>
-nmap ww <C-w><C-w>
+nmap <leader>w <C-w><C-w>
 
 " Jump to an explorer window with Leader-1 or Leader-2.
 nmap <leader>1 :FirstExplorerWindow<CR>

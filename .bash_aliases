@@ -1,5 +1,5 @@
 # List files with human sizes and colours.
-alias ls="command ls -hBG"
+alias ls="command ls $LS_COMMON"
 alias ll="ls -l"
 
 # Show process list as a hierarchical tree

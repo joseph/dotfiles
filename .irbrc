@@ -8,13 +8,6 @@ IRB.conf[:HISTORY_FILE] = File.expand_path('~/.irb-history')
 # Override rvm's prompt with the simple one.
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
-# Load the default irb settings provided by the OS. On a Mac,
-# this includes tab completion and history.
-#
-if File.exists?('/etc/irbrc') && RUBY_VERSION.match(/^1\.8/)
-  load '/etc/irbrc'
-end
-
 # If lib dir exists, add it to the loadpath (for testing gems)
 $:.unshift('lib') if File.directory?("lib") && !$:.include?('lib')
 
