@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "$#" = "0" ]; then
+  du -xks `\ls -A` | sort -rn
+else
+  du -xks "$@" | sort -rn
+fi

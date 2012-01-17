@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Truncate files.
+# Usage: trunc FILE...
+
+for f in "$@" ; do
+  : > "$f"
+done

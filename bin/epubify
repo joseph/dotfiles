@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Turns the current working directory into an epub, eg:
+#
+#   epubify ../foo.epub
+#
+
+if [ -z $1 ];then
+  echo "Specify a filename."
+else
+  zip -0Xq $1 mimetype && zip -Xr9Dq $1 *
+fi

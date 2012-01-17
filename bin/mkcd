@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Make a directory and cd into it.
+# Usage: mkcd tmp
+
+mkdir -p "$@" && eval cd "\"\$$#\""

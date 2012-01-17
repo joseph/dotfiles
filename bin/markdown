@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# Reads string from STDIN and outputs markdowned string to STDOUT.
+# Usage: markdown "Here is a **bolded** word."
+# Example: cat foo.md | markdown
+
+require 'rubygems'
+require 'rdiscount'
+begin
+  require 'rubypants'
+rescue LoadError
+end
+
+out = ARGV[0]
+out = RDiscount.new(out).to_html
+out = RubyPants.new(out).to_html  if defined?(RubyPants)
+puts out

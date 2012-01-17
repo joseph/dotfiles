@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Send dotfiles and stuff to another host.
+# Usage: propagate joseph@some-host.example.com
+
+if [ -z $1 ];then
+  echo "Please specify user@host"
+  exit
+fi
+
+echo "Appending SSH key for $1... "
+KEY="$HOME/.ssh/id_rsa.pub"
+KEYCODE=`cat $KEY`
+ssh -q $1 "mkdir -p ~/.ssh; chmod 700 ~/.ssh; echo "$KEYCODE" >> ~/.ssh/authorized_keys; chmod 644 ~/.ssh/authorized_keys"
+echo "SSH key appended."
+echo ""
+
+echo "Uploading dotfiles..."
+scp -r ~/.profile ~/.aliases ~/.vimrc ~/.gitconfig ~/.gitignore $1:~/
+echo "Dotfiles uploaded."
+echo ""
+
+echo "Logging in..."
+ssh $1

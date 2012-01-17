@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Start GNU screen with Rails-specific configuration.
+
+if test -f ".screenrc"; then
+  screen -c .screenrc
+elif test -f "script/rails"; then
+  screen -c ~/.rails3.screenrc
+elif test -f "script/server"; then
+  screen -c ~/.rails.screenrc
+else
+  echo "You are not in a Rails directory.";
+fi;
