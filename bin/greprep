@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Finds and replaces a string pattern in one or more files.
+# TODO: usage
 
 grep -rl $2 $1 |
   while read filename

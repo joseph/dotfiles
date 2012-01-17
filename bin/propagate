@@ -19,8 +19,7 @@ echo "SSH key appended."
 echo ""
 
 echo "Uploading dotfiles..."
-scp -r ~/.bashrc \
-       ~/.bash_profile \
+scp -r ~/.bash_profile \
        ~/.bash_aliases \
        ~/.bash_functions \
        ~/.vimrc \
