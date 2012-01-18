@@ -95,7 +95,10 @@ export LS_COMMON
 #----------------------------------------------------------
 
 # Use vim bindings for command line (ie, press ESC to leave 'insert' mode).
-set -o vi
+# Only on my Mac -- not enabled by default for other hosts.
+if [ "$UNAME" = Darwin ]; then
+  set -o vi
+fi
 
 # Bash history store
 HISTCONTROL=ignoreboth

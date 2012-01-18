@@ -1,7 +1,6 @@
 " window size:
 set lines=72
 set columns=125
-let winManagerWidth=40
 
 " Remove all GUI options (except right scrollbar)
 set guioptions=r
