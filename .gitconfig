@@ -1,0 +1,40 @@
+[user]
+	name = Joseph Pearson
+  email = joseph@inventivelabs.com.au
+
+[core]
+  excludesfile = /Users/joseph/.gitignore
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	autocrlf = input
+
+[branch]
+  autosetuprebase = always
+
+[alias]
+  st = status -sb
+  co = checkout
+  br = branch
+  dc = diff -b --cached
+  db = diff -b
+  dw = diff -b --word-diff
+  l = log '--pretty=format:%Cblue%h%d%Creset %ar %Cgreen%an%Creset %s' --graph
+
+[color]
+  ui = true
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan

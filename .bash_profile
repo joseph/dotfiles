@@ -133,6 +133,9 @@ fi
 # Load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Initialise env for hub (a superset of git commands).
+[[ -s "$HOME/.hubconfig" ]] && source "$HOME/.hubconfig"
+
 # Load personal command aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
