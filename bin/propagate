@@ -3,20 +3,27 @@
 # Send dotfiles and stuff to another host.
 # Usage: propagate joseph@some-host.example.com
 
-if [ -z $1 ];then
-  echo "Please specify user@host"
+TARG=$1
+if [ -z $TARG ];then
+  echo "Please specify user@host."
   exit
 fi
 
-echo "Appending SSH key for $1... "
-KEY="$HOME/.ssh/id_rsa.pub"
-KEYCODE=`cat $KEY`
-ssh -q $1 "mkdir -p ~/.ssh; \
-  chmod 700 ~/.ssh; \
-  echo "$KEYCODE" >> ~/.ssh/authorized_keys; \
-  chmod 644 ~/.ssh/authorized_keys"
-echo "SSH key appended."
-echo ""
+echo "Appending SSH key for $TARG..."
+KEYCODE=`cat ~/.ssh/id_rsa.pub`
+KEYFILE="~/.ssh/authorized_keys"
+PROPACMD="if ! [ -d ~/.ssh ]; then \
+    mkdir -p ~/.ssh; \
+    chmod 700 ~/.ssh; \
+  fi; \
+  if ! [ -f $KEYFILE ]; then \
+    touch $KEYFILE; \
+    chmod 644 $KEYFILE; \
+  fi; \
+  if ! \`grep -q \"$KEYCODE\" $KEYFILE\`; then \
+    echo '$KEYCODE' >> $KEYFILE; \
+  fi"
+ssh -q $TARG "$PROPACMD"
 
 echo "Uploading dotfiles..."
 scp -r ~/.bash_profile \
@@ -24,9 +31,8 @@ scp -r ~/.bash_profile \
        ~/.bash_functions \
        ~/.vimrc \
        ~/.irbrc \
-       $1:~/
-echo "Dotfiles uploaded."
-echo ""
+       ~/.gitconfig \
+       $TARG:~/
 
 echo "Logging in..."
-ssh $1
+ssh $TARG

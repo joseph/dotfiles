@@ -3,7 +3,6 @@
   email = joseph@inventivelabs.com.au
 
 [core]
-  excludesfile = /Users/joseph/.gitignore
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	autocrlf = input
 
@@ -11,7 +10,7 @@
   autosetuprebase = always
 
 [alias]
-  st = status -sb
+  st = status -s
   co = checkout
   br = branch
   dc = diff -b --cached
