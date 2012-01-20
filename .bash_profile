@@ -21,6 +21,10 @@ case "$0" in
 esac
 
 
+# Used in GNU-screen startup scripts to find this one.
+export RCFILE=$HOME/.bash_profile
+
+
 #----------------------------------------------------------
 # PATH
 #----------------------------------------------------------
