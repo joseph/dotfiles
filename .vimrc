@@ -87,12 +87,22 @@ function! StripTrailingWhitespace()
 endfunction
 
 
+" Open a buffer by number.
+"
+function! OpenBufferByNumber(n)
+  exe 'silent! buffer' . a:n
+endfunction
+
+
 " ----------------------------------------------------------------------------
 " Commands
 " ----------------------------------------------------------------------------
 
 " :SW -- sudo save the current file and tell vim to reload it
 command SW exec 'w !sudo tee % >/dev/null' | e! %
+
+
+command -nargs=1 B call OpenBufferByNumber(<f-args>)
 
 
 " ----------------------------------------------------------------------------
