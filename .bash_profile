@@ -109,12 +109,15 @@ umask 0022
 #----------------------------------------------------------
 
 # Load git bash completion
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-  source /usr/local/etc/bash_completion.d/git-completion.bash
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
+  source /usr/local/git/contrib/completion/git-completion.bash
 fi
 
-# Load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# Load rbenv, if it exists
+if [[ -d "$HOME/.rbenv" ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 # Initialise env for hub (a superset of git commands).
 [[ -s "$HOME/.hubconfig" ]] && source "$HOME/.hubconfig"
@@ -124,6 +127,9 @@ fi
 
 # Load personal shell functions
 [[ -s "$HOME/.bash_functions" ]] && source "$HOME/.bash_functions"
+
+# Load host-specific initialisation, if any.
+[[ -s "$HOME/.bash_hostenv" ]] && source "$HOME/.bash_hostenv"
 
 
 #----------------------------------------------------------
