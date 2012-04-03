@@ -116,13 +116,10 @@ nmap <F1> <nop>
 nmap K <nop>
 
 " Leader-n -- toggle line numbers
-map <leader>n :set nu!<CR>
+nmap <leader>n :set nu!<CR>
 
 " Leader-h -- toggle search highlights
 nmap <leader>h :let &hlsearch=!&hlsearch<CR>
-
-" Leader-p -- toggle 'paste' insert mode
-set pastetoggle=<leader>p
 
 " Leader-s -- remove all trailing whitespace in file.
 nmap <leader>s :call StripTrailingWhitespace()<CR>
