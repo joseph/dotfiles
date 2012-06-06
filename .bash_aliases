@@ -35,3 +35,6 @@ alias pcap='RAILS_ENV=production cap'
 alias scap='RAILS_ENV=staging cap'
 alias dcap='BOOKISH_CAP_TARGET=delta cap'
 alias acap='BOOKISH_CAP_TARGET=alpha cap'
+
+# Start up the ssh agent
+alias sshagent='ssh-agent /bin/bash --init-file ~/.bash_profile'
