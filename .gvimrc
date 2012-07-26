@@ -1,6 +1,6 @@
 " window size:
-set lines=72
-set columns=125
+set lines=85
+set columns=140
 
 " Remove all GUI options (except right scrollbar)
 set guioptions=r

@@ -14,6 +14,7 @@ set softtabstop=2
 set expandtab
 set smarttab
 set autoindent
+set nofoldenable
 
 " Basics of good behaviour.
 set ruler
@@ -165,11 +166,6 @@ if has("autocmd")
   au BufEnter *.html,*.HTM set ai sw=2 ts=2 syntax=html
   au BufEnter *.screenplay set ai sw=2 ts=2 syntax=ruby
   au BufEnter Gemfile,Capfile,Rakefile set ai sw=2 ts=2 syntax=ruby
-
-  " Markdown settings
-  augroup md
-    au BufRead *.md,*.mkd,*.markdown  set formatoptions=tcroqn2 comments=n:>
-  augroup END
 
 endif
 

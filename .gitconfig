@@ -18,6 +18,7 @@
   db = diff -b
   dw = diff -b --word-diff
   l = log '--pretty=format:%Cblue%h%d%Creset %ar %Cgreen%an%Creset %s' --graph
+  treebranches = log --graph --simplify-by-decoration --pretty=format:'%d' --all
 
 [color]
   ui = true
