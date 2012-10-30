@@ -1,15 +1,24 @@
-#!/bin/sh
+#!/bin/bash
 
 # Send dotfiles and stuff to another host.
 # Usage: propagate joseph@some-host.example.com
 
-TARG=$1
-if [ -z $TARG ];then
+ADDR=$1
+if [[ $2 = '-p' ]]; then
+  SSH_PORT="-p $3"
+  SCP_PORT="-P $3"
+else
+  SSH_PORT=""
+  SCP_PORT=""
+fi
+
+shift 1
+if [ -z ADDR ];then
   echo "Please specify user@host."
   exit
 fi
 
-echo "Appending SSH key for $TARG..."
+echo "Appending SSH key for $ADDR..."
 KEYCODE=`cat ~/.ssh/id_rsa.pub`
 KEYFILE="~/.ssh/authorized_keys"
 PROPACMD="if ! [ -d ~/.ssh ]; then \
@@ -23,16 +32,16 @@ PROPACMD="if ! [ -d ~/.ssh ]; then \
   if ! \`grep -q \"$KEYCODE\" $KEYFILE\`; then \
     echo '$KEYCODE' >> $KEYFILE; \
   fi"
-ssh -q $TARG "$PROPACMD"
+ssh $SSH_PORT -q $ADDR "$PROPACMD"
 
 echo "Uploading dotfiles..."
-scp -r ~/.bash_profile \
+scp $SCP_PORT -r ~/.bash_profile \
        ~/.bash_aliases \
        ~/.bash_functions \
        ~/.vimrc \
        ~/.irbrc \
        ~/.gitconfig \
-       $TARG:~/
+       $ADDR:~/
 
 echo "Logging in..."
-ssh $TARG
+ssh $ADDR $SSH_PORT

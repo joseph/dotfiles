@@ -22,8 +22,7 @@ bindkey -k k8 next
 # Don't close a window when its starting process dies.
 zombie kr
 
-# remap Ctrl-a to Ctrl p -- not necessary: to get normal bash Ctrl-a behaviour
-# (ie, move to start of line), hit Ctrl-a a.
+# remap Ctrl-a to Ctrl p -- I like Ctrl-a to take me to start of line.
 escape ^pp
 
 bindkey -k k6 copy

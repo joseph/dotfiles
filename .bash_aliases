@@ -30,11 +30,8 @@ alias svndiff='svn diff -x -uw --diff-cmd colordiff'
 # this is a dangerous alias!
 alias svnerase='find . -name .svn -print0 | xargs -0 rm -rf'
 
-# Run Capistrano for specific environments.
-alias pcap='RAILS_ENV=production cap'
-alias scap='RAILS_ENV=staging cap'
-alias dcap='BOOKISH_CAP_TARGET=delta cap'
-alias acap='BOOKISH_CAP_TARGET=alpha cap'
-
 # Start up the ssh agent
 alias sshagent='ssh-agent /bin/bash --init-file ~/.bash_profile'
+
+# Open a markdown file in Marked (MacOSX)
+alias marked="open -a Marked"

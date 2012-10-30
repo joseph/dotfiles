@@ -39,9 +39,9 @@ test -d "$HOME/bin" && export PATH="$HOME/bin:$PATH"
 # LOCALE
 #----------------------------------------------------------
 
-export LANG=en_AU
-export LC_CTYPE=UTF-8
-export LC_ALL=en_AU.UTF-8
+# export LANG=en_AU
+# export LC_CTYPE=UTF-8
+# export LC_ALL=en_AU.UTF-8
 
 
 #----------------------------------------------------------
@@ -79,9 +79,9 @@ export LS_COMMON
 
 # Use vim bindings for command line (ie, press ESC to leave 'insert' mode).
 # Only on my Mac -- not enabled by default for other hosts.
-if [ "$UNAME" = Darwin ]; then
-  set -o vi
-fi
+# if [ "$UNAME" = Darwin ]; then
+#   set -o vi
+# fi
 
 # Bash history store
 HISTCONTROL=ignoreboth

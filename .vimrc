@@ -32,7 +32,9 @@ set nostartofline " don't jump to the start of line when scrolling
 set background=dark
 
 set textwidth=80
-set colorcolumn=+1,+2,+3
+if exists("&colorcolumn")
+  set colorcolumn=+1,+2,+3
+endif
 
 " UTF-8 support
 if has("multi_byte")
