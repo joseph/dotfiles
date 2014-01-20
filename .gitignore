@@ -3,4 +3,5 @@
 .bundle
 .vagrant
 .rbenv-version
+.keys/old.gimm*
 Vagrantfile

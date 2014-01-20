@@ -41,3 +41,8 @@ function brake () {
     echo "You are not in a Rails directory.";
   fi;
 }
+
+
+function title {
+  echo -ne "\033]0;"$*"\007"
+}

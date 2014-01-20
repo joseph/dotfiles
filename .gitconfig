@@ -5,7 +5,8 @@
 [core]
   excludesfile = ~/.gitignore
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  autocrlf = input
+	autocrlf = false
+	eol = lf
 
 [branch]
   autosetuprebase = always
@@ -14,8 +15,8 @@
   st = status -s
   co = checkout
   br = branch
+  d = diff -b
   dc = diff -b --cached
-  db = diff -b
   dw = diff -b --word-diff
   l = log '--pretty=format:%Cblue%h%d%Creset %ar %Cgreen%an%Creset %s' --graph
   treebranches = log --graph --simplify-by-decoration --pretty=format:'%d' --all

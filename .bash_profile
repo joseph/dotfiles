@@ -139,7 +139,7 @@ fi
 # Set a fancy prompt (non-color, unless we know we "want" color)
 #
 case "$TERM" in
-xterm-color)
+xterm-color | xterm-256color)
   declare -f __git_ps1 > /dev/null
   if [ $? -eq 0 ]; then
     PS1='\[\033[01;33m\][\t]\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[1;35m\]$(__git_ps1 "%s")\[\033[00m\]\n\$ '
