@@ -66,6 +66,13 @@ class Object
 end
 
 
+def datauri(path, mime)
+  require 'base64'
+  out = Base64.strict_encode64(IO.read(path))
+  "data:#{mime};charset=utf-8;base64,#{out}"
+end
+
+
 # View the contents of a Rails session cookie.
 def inspect_rails_session(cookie)
   Marshal.load(Base64.decode64(CGI.unescape(cookie).split('--').first))

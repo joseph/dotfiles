@@ -85,7 +85,7 @@ export LS_COMMON
 
 # Bash history store
 HISTCONTROL=ignoreboth
-HISTFILESIZE=10000
+HISTFILESIZE=7777
 HISTSIZE=10000
 
 # ignore backups, CVS directories, python bytecode, vim swap files

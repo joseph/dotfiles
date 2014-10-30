@@ -35,3 +35,5 @@ alias sshagent='ssh-agent /bin/bash --init-file ~/.bash_profile'
 
 # Open a markdown file in Marked (MacOSX)
 alias marked="open -a Marked"
+
+alias gitdeltags="git tag -l | xargs git tag -d"

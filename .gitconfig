@@ -1,6 +1,6 @@
 [user]
   name = Joseph Pearson
-  email = joseph@inventivelabs.com.au
+  email = jpearson@overdrive.com
 
 [core]
   excludesfile = ~/.gitignore
@@ -40,3 +40,5 @@
   added = yellow
   changed = green
   untracked = cyan
+[push]
+	default = simple
