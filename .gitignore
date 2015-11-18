@@ -5,3 +5,4 @@
 .rbenv-version
 .keys/old.gimm*
 Vagrantfile
+.screenrc
