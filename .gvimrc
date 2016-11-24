@@ -1,6 +1,6 @@
 " window size:
 set lines=85
-set columns=140
+set columns=120
 
 " Remove all GUI options (except right scrollbar)
 set guioptions=r
@@ -12,6 +12,7 @@ set guifont=Consolas:h12
 " have error messages red on white
 highlight ErrorMsg guibg=White guifg=Red
 
+set autochdir
 
 WMToggle
 set nu!

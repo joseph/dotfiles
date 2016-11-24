@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+def datauri(path, mime)
+  require 'base64'
+  out = Base64.strict_encode64(IO.read(path))
+  "data:#{mime};charset=utf-8;base64,#{out}"
+end
+
+puts datauri(ARGV[0], ARGV[1])

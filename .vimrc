@@ -195,7 +195,7 @@ match RedundantSpaces /\s\+$/
 
 " WinManager config
 
-let g:winManagerWidth = 40
+let g:winManagerWidth = 30
 
 " Leader-w -- toggle WinManager on or off.
 nmap <C-w><C-t> :WMToggle<CR>

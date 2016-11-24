@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require "rexml/document"
+
+while path = ARGV.shift
+  if File.exists?(path)
+    xml = File.read(path)
+    doc = REXML::Document.new(xml)
+    doc.context[:attribute_quote] = :quote
+    File.open(path, 'w') { |f|
+      doc.write(f, 2, false, true)
+      f.puts
+    }
+    puts("Wrote: #{path}")
+  else
+    puts("File does not exist: #{path}")
+  end
+end

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require('open-uri')
+
+while true do
+  open(ARGV[0])
+  puts('Wakey wakey')
+  sleep(15)
+end

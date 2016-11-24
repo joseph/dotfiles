@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require "rexml/document"
+
+
+def read_document(path)
+  REXML::Document.new(IO.read(path), :compress_whitespace => :all)
+end
+
+
+def clean_document(doc)
+  doc.xml_decl.remove
+  doc.root.attributes.delete('width')
+  doc.root.attributes.delete('height')
+  REXML::XPath.each(doc, "//*[@fill='#000000']") { |elem|
+    add_class(elem, 'icon-solid');
+  }
+  REXML::XPath.each(doc, "//*[@stroke='#000000']") { |elem|
+    add_class(elem, 'icon-hollow')
+  }
+end
+
+
+def add_class(elem, class_name)
+  classes = (elem.attributes['class'] || '').split(/\s+/)
+  classes += [class_name]
+  elem.attributes['class'] = classes.compact.uniq.join(' ')
+end
+
+
+while path = ARGV.shift
+  if File.exists?(path)
+    `clean-sketch-svg #{path}` unless ENV['PRECLEANED'] == '1'
+    doc = read_document(path)
+    clean_document(doc)
+    File.open(path, 'w') { |f|
+      doc.write(f, 2, false, true)
+      f.puts
+    }
+    puts("Wrote: #{path}")
+  else
+    puts("File does not exist: #{path}")
+  end
+end

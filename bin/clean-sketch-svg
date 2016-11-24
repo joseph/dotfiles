@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+require "rexml/document"
+
+def collapse_g(node)
+  return  unless node && child = sub_g(node)
+  collapse_g(child)
+  child.attributes.each_pair { |k, v| node.attributes[k] = v }
+  child.children.each { |grandchild| node.add(grandchild.remove) }
+  child.remove
+end
+
+
+def sub_g(node)
+  elems = node.elements.to_a
+  elems[0]  if elems.size == 1 && elems[0].name.downcase == 'g'
+end
+
+
+def read_document(path)
+  REXML::Document.new(IO.read(path), :compress_whitespace => :all)
+end
+
+
+def clean_document(doc)
+  REXML::XPath.each(doc, '//title', &:remove)
+  REXML::XPath.each(doc, '//desc', &:remove)
+  REXML::XPath.each(doc, '//comment()', &:remove)
+  unless ENV['PRESERVE_IDS'] == '1'
+    REXML::XPath.each(doc, '//g[@id]') { |elem| elem.delete_attribute('id') }
+    REXML::XPath.each(doc, '//g//[@id]') { |elem| elem.delete_attribute('id') }
+  end
+  REXML::XPath.each(doc, "//@*[namespace-uri()='http://www.bohemiancoding.com/sketch/ns']", &:remove)
+  REXML::XPath.each(doc, '//defs[not(node())]', &:remove)
+  doc.root.delete_namespace('sketch')
+  #doc.root.delete_namespace('xlink')
+  collapse_g(sub_g(doc.root))
+end
+
+
+def document_to_string(doc)
+  out = StringIO.new
+  doc.write(out, 2, false, true)
+  out.string.gsub(/>\s*/, ">").gsub(/\s*</, "<")
+end
+
+
+while path = ARGV.shift
+  if File.exists?(path)
+    doc = read_document(path)
+    clean_document(doc)
+    File.open(path, 'w') { |f|
+      f.puts document_to_string(doc)
+    }
+    puts("Wrote: #{path}")
+  else
+    puts("File does not exist: #{path}")
+  end
+end

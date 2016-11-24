@@ -36,4 +36,14 @@ alias sshagent='ssh-agent /bin/bash --init-file ~/.bash_profile'
 # Open a markdown file in Marked (MacOSX)
 alias marked="open -a Marked"
 
+# Delete all local tags in a git repo
 alias gitdeltags="git tag -l | xargs git tag -d"
+
+# Open MacVim
+alias gvim="/Applications/MacVim.app/Contents/MacOS/Vim -g"
+
+# Time a URL request
+alias curlt="curl -w \"@/Users/joseph/.curl-format\" -o /dev/null -s"
+
+# Clean all the slow intellisense gunk out of xcode
+alias xcodeclean="rm -frd ~/Library/Developer/Xcode/DerivedData/* && rm -frd ~/Library/Caches/com.apple.dt.Xcode/*"
