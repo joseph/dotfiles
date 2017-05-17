@@ -31,8 +31,8 @@ export RCFILE=$HOME/.bash_profile
 
 export PATH="/usr/local/bin:$PATH"
 
-# Add ~/bin to path if it exists.
-test -d "$HOME/bin" && export PATH="$HOME/bin:$PATH"
+# Add ~/www/dotfiles/bin to path if it exists.
+test -d "$HOME/www/dotfiles/bin" && export PATH="$HOME/www/dotfiles/bin:$PATH"
 
 
 #----------------------------------------------------------

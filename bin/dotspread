@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require('fileutils')
+
+if path = ARGV.shift
+  dotfiles = Dir.glob(File.join(path, '.*'), File::FNM_DOTMATCH)
+  dotfiles.each { |dotpath|
+    basepath = File.basename(dotpath)
+    linkpath = File.expand_path(File.join('~', basepath))
+    fullpath = File.expand_path(dotpath)
+    next  if ['.', '..', '.git'].include?(basepath)
+    if File.exists?(linkpath)
+      puts("Skipping: #{basepath} - file exists")
+    else
+      File.symlink(fullpath, linkpath)
+      puts("Linked: #{basepath}")
+    end
+  }
+else
+  puts("You must provide a path to the dotfiles directory.")
+end
+

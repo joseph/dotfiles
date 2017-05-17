@@ -7,7 +7,7 @@ set guioptions=r
 
 " have a small-ish yet readable font:
 "set guifont=*fixed*medium*semicondensed*120*iso8859-1*
-set guifont=Consolas:h12
+set guifont=Operator_Mono:h14
 
 " have error messages red on white
 highlight ErrorMsg guibg=White guifg=Red

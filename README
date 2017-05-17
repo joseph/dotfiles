@@ -1,0 +1,10 @@
+## Joseph's dotfiles
+
+My happy tilde, my home dollar home.
+
+Some of these files have not been updated in decades. Most of it is
+cribbed, unabashedly, from elsewhere.
+
+Clone the repo to ~/www/dotfiles, then run:
+
+    $ ~/www/dotfiles/bin/dotspread ~/www/dotfiles
