@@ -136,6 +136,12 @@ fi
 # PROMPT
 #----------------------------------------------------------
 
+if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash ]; then
+  . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
+  . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
+fi
+
+
 # Set a fancy prompt (non-color, unless we know we "want" color)
 #
 case "$TERM" in
