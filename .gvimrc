@@ -1,7 +1,3 @@
-" window size:
-set lines=85
-set columns=120
-
 " Remove all GUI options (except right scrollbar)
 set guioptions=r
 
@@ -14,5 +10,11 @@ highlight ErrorMsg guibg=White guifg=Red
 
 set autochdir
 
+" WinManager
+let g:winManagerWidth=32
 WMToggle
 set nu!
+
+" window size:
+set lines=85
+set columns=108

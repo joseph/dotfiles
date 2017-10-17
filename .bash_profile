@@ -136,9 +136,11 @@ fi
 # PROMPT
 #----------------------------------------------------------
 
-if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash ]; then
-  . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
-  . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
+export XCODE_PATH=`xcode-select -p`
+
+if [ -f "$XCODE_PATH/usr/share/git-core/git-completion.bash" ]; then
+  . "$XCODE_PATH/usr/share/git-core/git-completion.bash"
+  . "$XCODE_PATH/usr/share/git-core/git-prompt.sh"
 fi
 
 

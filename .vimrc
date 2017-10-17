@@ -15,6 +15,7 @@ set expandtab
 set smarttab
 set autoindent
 set nofoldenable
+set nowrap
 
 " Basics of good behaviour.
 set ruler
