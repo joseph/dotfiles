@@ -18,6 +18,7 @@
   d = diff -b
   dc = diff -b --cached
   dw = diff -b --word-diff
+  rc = rebase --continue
   l = log '--pretty=format:%Cblue%h%d%Creset %ar %Cgreen%an%Creset %s' --graph
   treebranches = log --graph --simplify-by-decoration --pretty=format:'%d' --all
 

@@ -8,13 +8,18 @@ set guifont=Operator_Mono:h14
 " have error messages red on white
 highlight ErrorMsg guibg=White guifg=Red
 
+" Show hidden characters
+:set list
+":set listchars=tab:▸\ ,eol:¬,trail:•,nbsp:␣
+:set listchars=tab:▸\ ,trail:•,nbsp:␣
+
 set autochdir
 
 " WinManager
-let g:winManagerWidth=32
+let g:winManagerWidth=40
 WMToggle
 set nu!
 
 " window size:
-set lines=85
-set columns=108
+set lines=86
+set columns=154

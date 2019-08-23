@@ -18,7 +18,7 @@ alias du1='du -h --max-depth=1'
 alias gap='printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" && clear'
 
 # Ack how I like her.
-alias ack='ack -a --smart-case --follow'
+alias ack='ack -a --smart-case --follow --ignore-dir=tmp --ignore-dir=log'
 
 # Less how I like her.
 alias lcat='less -FirSwX'
@@ -47,3 +47,7 @@ alias curlt="curl -w \"@/Users/joseph/.curl-format\" -o /dev/null -s"
 
 # Clean all the slow intellisense gunk out of xcode
 alias xcodeclean="rm -frd ~/Library/Developer/Xcode/DerivedData/* && rm -frd ~/Library/Caches/com.apple.dt.Xcode/*"
+
+# You can't teach an old dog new tricks, so just alias them
+#alias gitx="fork open"
+alias gitx="lazygit"

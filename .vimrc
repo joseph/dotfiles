@@ -157,6 +157,9 @@ if has("autocmd")
   au BufRead *\.txt map ^ g^
   au BufRead *\.txt map $ g$
 
+  " Swift is verbose, so avoid forced-wrapping
+  au BufRead *\.swift setlocal textwidth=400
+
   " Empty indentexpr for xml-style files.
   " autocmd BufEnter *.html setlocal indentexpr=
   " autocmd BufEnter *.rhtml setlocal indentexpr=
