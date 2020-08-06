@@ -162,6 +162,9 @@ if has("autocmd")
   " Swift is verbose, so avoid forced-wrapping
   au BufRead *\.swift setlocal textwidth=400
 
+  " Use YAML for odstrings
+  autocmd BufNewFile,BufRead *.odstrings set syntax=yaml
+
   " Empty indentexpr for xml-style files.
   " autocmd BufEnter *.html setlocal indentexpr=
   " autocmd BufEnter *.rhtml setlocal indentexpr=
