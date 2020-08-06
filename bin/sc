@@ -1,9 +1,47 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-# Start GNU screen with Rails-specific configuration.
+VM_SSH_NAME = 'readiverse'
+CMD_REPLACEMENTS = {
+  'SHELL' => '/bin/bash -l -i',
+  'USER' => 'jpearson'
+}
 
-if test -f ".screenrc"; then
-  screen -c .screenrc
-else
-  echo "You are not in a Rails directory."
-fi
+require('json')
+require('tempfile')
+
+unless File.exist?('.screenish')
+  puts "You are not in a Readiverse service directory."
+  exit
+end
+
+service_directory = File.basename(Dir.pwd)
+vm_command = lambda { |cmd|
+  CMD_REPLACEMENTS.each_pair { |pattern, replacement|
+    cmd.gsub!("{{#{pattern}}}", replacement)
+  }
+  "ssh #{VM_SSH_NAME} -t 'cd /vagrant/#{service_directory}; #{cmd}'"
+}
+
+screens = [{
+  :name => "ssh",
+  :command => vm_command.call('{{SHELL}}')
+}, {
+  :name => "commands",
+  :command => CMD_REPLACEMENTS['SHELL']
+}]
+
+JSON.parse(File.read('.screenish')).reverse.each { |screen|
+  screens.unshift({
+    :name => screen["name"],
+    :command => vm_command.call(screen["command"])
+  })
+}
+
+Tempfile.create(".screenrc-#{service_directory}") { |f|
+  f.puts('source $HOME/.master.screenrc')
+  screens.each_with_index { |screen, i|
+    f.puts("screen -t '#{screen[:name]}' #{i+1} #{screen[:command]}")
+  }
+  f.rewind
+  `screen -c #{f.path}`
+}
