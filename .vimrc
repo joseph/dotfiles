@@ -131,6 +131,8 @@ nmap <leader>h :let &hlsearch=!&hlsearch<CR>
 " Leader-s -- remove all trailing whitespace in file.
 nmap <leader>s :call StripTrailingWhitespace()<CR>
 
+" Leader-p -- paste the last yank (not delete)
+nmap <leader>p "0p
 
 " ----------------------------------------------------------------------------
 " Auto-Commands (only processed if Vim compiled with support for autocmd).

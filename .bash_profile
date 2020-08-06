@@ -24,6 +24,8 @@ esac
 # Used in GNU-screen startup scripts to find this one.
 export RCFILE=$HOME/.bash_profile
 
+# Piss off, Apple
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #----------------------------------------------------------
 # PATH
