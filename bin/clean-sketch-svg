@@ -28,7 +28,7 @@ def clean_document(doc)
   REXML::XPath.each(doc, '//comment()', &:remove)
   unless ENV['PRESERVE_IDS'] == '1'
     REXML::XPath.each(doc, '//g[@id]') { |elem| elem.delete_attribute('id') }
-    REXML::XPath.each(doc, '//g//[@id]') { |elem| elem.delete_attribute('id') }
+    REXML::XPath.each(doc, '//g//*[@id]') { |elem| elem.delete_attribute('id') }
   end
   REXML::XPath.each(doc, "//@*[namespace-uri()='http://www.bohemiancoding.com/sketch/ns']", &:remove)
   REXML::XPath.each(doc, '//defs[not(node())]', &:remove)
