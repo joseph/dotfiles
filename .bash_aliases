@@ -51,3 +51,7 @@ alias xcodeclean="rm -frd ~/Library/Developer/Xcode/DerivedData/* && rm -frd ~/L
 # You can't teach an old dog new tricks, so just alias them
 #alias gitx="fork open"
 alias gitx="lazygit"
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
+alias lsrecent="ls -1t | head -10"
